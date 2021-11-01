@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+#container{
+
+}
+
+.gridRow {
+
+}
+
+.cell {
+    border: 1px solid gray;
+    min-width: 25px;
+    min-height: 25px;
+    display: inline-block;
+    margin-right: 2px;
+  }
