@@ -1,5 +1,6 @@
 body {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
@@ -7,11 +8,11 @@ body {
 }
 
 #container{
-
+    border: 3px solid black;
 }
 
 .gridRow {
-
+    box-shadow: 0.25 0.25;
 }
 
 .cell {
