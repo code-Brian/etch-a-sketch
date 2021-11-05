@@ -1,37 +1,28 @@
 const container = document.getElementById('container');
-let rows = document.getElementsByClassName('gridRow');
-let cells = document.getElementsByClassName('cell');
+let slider = document.getElementById('grid-slider');
 
-function makeRows (rowNum){
-    for(r = 0; r < rowNum; r++){
-        let row = document.createElement('div');
-        container.appendChild(row).className = 'gridRow';
+
+
+
+
+
+// functions
+function createGrid(gridNumber) {
+    let gridArea = gridNumber * gridNumber;
+    for (i = 1; i <= gridArea; i++) {
+        let pixel = document.createElement('div');
+        pixel.classList = 'gridPixel';
+        container.style.gridTemplateRows = `repeat(${gridNumber}, 1fr)`;
+        container.style.gridTemplateColumns = `repeat(${gridNumber}, 1fr)`;
+        container.insertAdjacentElement('beforeend', pixel);
     }
+    let pixels = document.querySelectorAll('.gridPixel');
+    pixels.forEach(pixel => pixel.addEventListener('mouseover', changeColor));
 }
 
-function makeColumns (cellNum){
-    for(i = 0; i < rows.length; i++){
-        for(j = 0; j < cellNum; j++){
-            let newCell = document.createElement('div');
-            rows[j].appendChild(newCell).className = 'cell';
-        }
-    }      
+function changeColor() {
+    let pixelColor = container.querySelectorAll('.gridPixel');
+    this.style.backgroundColor = 'black';
 }
 
-
-function defaultGrid(rowNum,colNum){
-    makeRows(rowNum);
-    makeColumns(colNum);
-}
-defaultGrid(100,100);
-
-
-
-const cellGrid = document.querySelectorAll('div.cell');
-
-cellGrid.forEach((div) => {
-    div.addEventListener("mouseover",(event) => {
-        event.target.style.backgroundColor = 'black';
-        console.log(event);
-    });
-});
+createGrid(10);
