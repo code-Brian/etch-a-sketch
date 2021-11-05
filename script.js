@@ -1,9 +1,5 @@
 const container = document.getElementById('container');
-let slider = document.getElementById('grid-slider');
-
-
-
-
+let slider = document.querySelector('#gridSlider');
 
 
 // functions
@@ -20,9 +16,18 @@ function createGrid(gridNumber) {
     pixels.forEach(pixel => pixel.addEventListener('mouseover', changeColor));
 }
 
+function updateGrid(gridNumber) {
+    let pixels = container.querySelectorAll('div');
+    pixels.forEach(pixel => pixel.remove());
+    createGrid(slider.value);
+}
+
 function changeColor() {
     let pixelColor = container.querySelectorAll('.gridPixel');
     this.style.backgroundColor = 'black';
 }
 
 createGrid(10);
+
+// listeners
+slider.addEventListener('mouseup', updateGrid);

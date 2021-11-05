@@ -1,5 +1,10 @@
+:root {
+    --content-width: 400px;
+}
+
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -7,8 +12,43 @@ body {
 
 #container {
     display: grid;
-    height: 500px;
-    width: 500px;
-    border: 5px solid black;
-    background-color: antiquewhite;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #FFFFFF;
+}
+
+.wrapper {
+    height: 75vh;
+    width: 75vw;
+    max-height: var(--content-width);
+    max-width: var(--content-width);
+    margin: 30px auto;
+    position: relative;
+}
+
+.wrapper::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    bottom: -15px;
+    right: -15px;
+    left: -15px;
+    background-color: #FFFFFF;
+    z-index: -1;
+}
+
+.wrapper::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    bottom: -15px;
+    right: -15px;
+    left: -15px;
+    background-color: #FFFFFF;
+    z-index: -2;
+}
+
+.wrapper::before, .wrapper::after {
+    background: linear-gradient(45deg, #AAA 0 50%, #75757B 50% 100%);
 }
