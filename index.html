@@ -9,6 +9,11 @@
     <script type="text/javascript" src="script.js" defer></script>
 </head>
 <body>
+    <div class="buttonList">
+        <input id="gray" type="button" value="Grayscale" data-color="gray" class="color-choice">
+        <input type="button" value="Black" data-color="black" class="color-choice">
+        <input type="button" value="Rainbow" data-color="rainbow" class="color-choice">
+    </div>
     <div class="wrapper">
         <div id="container">
         </div>
@@ -16,6 +21,7 @@
 
     <div>
         <input type="range" min="4" max="100" value="15" id="gridSlider">
+        <div id="sliderDisplay"></div>
     </div>
 </body>
 </html>
