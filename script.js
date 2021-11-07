@@ -33,15 +33,16 @@ function changeColor() {
         case'rainbow':
             this.style.backgroundColor = `hsl(${Math.random() * 360} 100% 50%)`;
             console.log(`${color} pass thru rainbow case`);
+            this.classList.remove('gray');
             break;
         default:
             this.style.backgroundColor = color;
-            console.log(`${color} pass thru default case`);
+            this.classList.remove('gray');
             break;
     }
 }
 
-function colorChoice(event) {
+function selectColor(event) {
     switch(event.target.dataset.color) {
         case'gray':
             color = 'gray';
@@ -50,6 +51,9 @@ function colorChoice(event) {
         case'rainbow':
             color = 'rainbow';
             console.log(color);
+            break;
+        case'eraser':
+            color = 'eraser';
             break;
         default:
             color = 'black';
@@ -61,4 +65,4 @@ createGrid(10);
 
 // listeners
 slider.addEventListener('mouseup', updateGrid);
-colorButtons.forEach(colorButton => colorButton.addEventListener('click', colorChoice));
+colorButtons.forEach(colorButton => colorButton.addEventListener('click', selectColor));
