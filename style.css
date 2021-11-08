@@ -52,3 +52,15 @@ body {
 .wrapper::before, .wrapper::after {
     background: linear-gradient(45deg, #AAA 0 50%, #75757B 50% 100%);
 }
+
+.slider-interface, .buttonList {
+    display: flex;
+    background: linear-gradient(180deg, #AAA 25% 100%, #75757B 25% 100%);
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    width: 22vw;
+    padding: 0.5em;
+    font-size: 14px;
+    box-shadow:
+}

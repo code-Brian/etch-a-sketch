@@ -1,5 +1,6 @@
 const container = document.getElementById('container');
 const colorButtons = document.querySelectorAll('.color-choice');
+const clearButton = document.querySelector('#clear-button');
 let slider = document.querySelector('#gridSlider');
 let color = "black";
 
@@ -27,12 +28,24 @@ function updateGrid(gridNumber) {
 function changeColor() {
     switch(color) {
         case'gray':
-            this.style.backgroundColor = 'rgba(0,0,0, 0.1)';
-            console.log("gray passed thru changeColor");
+            if (this.style.backgroundColor.match(/rgba/)) {
+                let currentOpacity = Number(this.style.backgroundColor.slice(-4,-1));
+                if (currentOpacity <= 0.9) {
+                    this.style.backgroundColor = `rgba(0,0,0, ${currentOpacity + 0.1}`;
+                    this.classList = 'gray';
+                }
+            } else if (this.classList == 'gray' && this.style.backgroundColor == 'rgb(0, 0, 0)') {
+                return;
+            } else {
+                this.style.backgroundColor = 'rgba(0,0,0, 0.1)';
+            }
             break;
         case'rainbow':
             this.style.backgroundColor = `hsl(${Math.random() * 360} 100% 50%)`;
-            console.log(`${color} pass thru rainbow case`);
+            this.classList.remove('gray');
+            break;
+        case'eraser':
+            this.style.backgroundColor = '#FFF';
             this.classList.remove('gray');
             break;
         default:
@@ -61,8 +74,21 @@ function selectColor(event) {
     }
 }
 
+function clearAllPixels() {
+  let pixels = container.querySelectorAll('div');
+  pixels.forEach(pixel => pixel.style.backgroundColor = "#FFF");
+}
+
+function displayDimension() {
+    let displayDiv = document.querySelector('#sliderDisplay');
+    displayDiv.textContent = `Curent grid size: ${slider.value} x ${slider.value}`;
+}
+
 createGrid(10);
+displayDimension(slider.value);
 
 // listeners
 slider.addEventListener('mouseup', updateGrid);
+slider.addEventListener('change', displayDimension)
+clearButton.addEventListener('click', clearAllPixels);
 colorButtons.forEach(colorButton => colorButton.addEventListener('click', selectColor));
